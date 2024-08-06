@@ -1,0 +1,6 @@
+---
+# defaults file for aws_ec2
+
+key_pair: demo_login
+instance_type: t2.micro
+ami_id: ami-0ad21ae1d0696ad58

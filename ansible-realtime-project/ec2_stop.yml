@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Print the Gathered facts
+      ansible.builtin.debug:
+      vars: ansible_facts
+
+    - name: Shutdown the Debian instance
+      ansible.builtin.command: /sbin/shutdown -t now
+      when: 
+        ansible_facts['os_family'] == 'Debain'
+        
+
+

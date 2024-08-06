@@ -1,0 +1,13 @@
+---
+- name: Check Ubuntu versions of target hosts
+  hosts: all
+  gather_facts: true
+  tasks:
+    - name: Remove existing Ubuntu version directories
+      local_action: command rm -rf ./ubuntu-versions
+      when: ansible_distribution.lower() == 'ubuntu'
+
+    - name: Store Ubuntu version and host on control machine
+      local_action: shell echo "{{ inventory_hostname }}=ubuntu-{{ ansible_distribution_version }}" >> ./ubuntu-versions
+      when: ansible_distribution.lower() == 'ubuntu'
+

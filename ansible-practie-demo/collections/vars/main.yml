@@ -1,0 +1,8 @@
+---
+# vars file for collections
+
+vpc_name: ansible-vpc
+vpc_cidr: 10.0.0.0/16
+
+igw_name: ansible-vpc-igw
+region: ap-south-1

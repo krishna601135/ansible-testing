@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Print the ansible gathered facts
+      ansible.builtin.debug:
+        var: ansible_facts
+    - name: Delay shutting down the remote node
+      community.general.shutdown:
+        delay: 60
+      when:
+        ansible_facts['os_family'] == 'Debian'

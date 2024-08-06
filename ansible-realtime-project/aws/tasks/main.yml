@@ -1,0 +1,23 @@
+---
+# tasks file for aws
+
+- name: start an instance with a public IP address
+  amazon.aws.ec2_instance:
+    name: "{{ item.name }}"
+    key_name: "demo_login"
+    vpc_subnet_id: subnet-03b299acb92fdb9fd
+    instance_type: t2.micro
+    aws_access_key: "{{ access_key }}"
+    aws_secret_key: "{{ secret_key }}"
+    security_group: default
+    region: ap-south-1
+    network:
+      assign_public_ip: true
+    image_id: "{{item.image}}"
+    tags:
+      environment: Testing
+  loop:
+    - { image: "ami-022ce6f32988af5fa", name: "manage-node-1" }
+    - { image: "ami-0ad21ae1d0696ad58", name: "manage-node-2" }
+    - { image: "ami-0ad21ae1d0696ad58", name: "manage-node-3" }
+
